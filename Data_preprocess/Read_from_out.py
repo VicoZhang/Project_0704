@@ -1,3 +1,10 @@
+"""
+encoding = 'utf-8'
+author: Vico Zhang
+此文件为底层文件，请勿修改
+More information: https://github.com/VicoZhang/Project_0704.git
+"""
+
 import os
 import numpy as np
 import re
@@ -5,7 +12,13 @@ import re
 
 class ReadValue:
     """
-    读取.out文件，包括数据文件和多重运行模块控制的变量
+    底层，读取.out文件。
+
+    调用：value_reader = ReadValue(path), path为.out文件路径,
+    【此路径将以列表的形式给出，因为同一次仿真的.out文件可能不止一个】
+
+    方法：ReadValue.read_value，返回值为tuple (仿真数据(ndarray, 项目*采样点)，仿真时间(ndarray, 1*采样点))
+
     """
 
     def __init__(self, path):
@@ -26,7 +39,11 @@ class ReadValue:
 
 class ReadIndex:
     """
-    读取.inf文件，匹配数据变量
+    底层，读取.inf文件
+
+    调用:index_reader = ReadIndex(root_path, file_name) root_path为数据根目录，file_name为.inf文件名
+
+    方法:index_reader.read_index(), 返回一个字典，字典的键值为 inf 中的项目名，值为项目对应在数据中的序列
     """
 
     def __init__(self, root_path, file_name):
@@ -49,7 +66,16 @@ class ReadIndex:
 
 class ReadInformation:
     """
-    读取 mrunout 信息
+    底层，读取 mrunout.out 信息
+
+    调用: information_reader = ReadInformation (root_path, file_name), root_path为数据根目录，file_name为文件名
+
+    方法:
+
+    information_reader.read_information(), 返回不包含表头的 information 数据矩阵，行为仿真次数，列为对应项目
+
+    information_reader.read_name(), 返回一个字典，字典的键值为 information 项目名，
+    值为对应在 information_reader.read_information() 输出数据的列数
     """
 
     def __init__(self, root_path, file_name):
@@ -70,8 +96,8 @@ class ReadInformation:
                 self.DELETE = i
                 break
             else:
-                information_temp[i-2] = re.split(r"[ ]+", self.inf_temp[i].replace("\n", " "))[1:-1]
-        return information_temp[:self.DELETE-2]
+                information_temp[i - 2] = re.split(r"[ ]+", self.inf_temp[i].replace("\n", " "))[1:-1]
+        return information_temp[:self.DELETE - 2]
 
     def read_name(self):
         name_temp = np.array(re.split(r"[ ]+", self.inf_temp[1].replace("\n", " "))[2:-1])
@@ -104,6 +130,7 @@ class FilesScanning:
 
 
 if __name__ == '__main__':
+    # 以下为测试程序
     value_reader = ReadValue
     index_reader = ReadIndex
     information_reader = ReadInformation
