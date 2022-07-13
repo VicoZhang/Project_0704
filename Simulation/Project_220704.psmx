@@ -1,7 +1,7 @@
 <Meta name="Project_220704">
   <messagelist>
     <message status="normal" label="build" groupid="100006">
-      <User scope="Project_220704" name="Project_220704" status="normal" link="12026143" /><![CDATA[Generating network and source code 'D:\SRP_project\Project_0704\Simulation\Project_220704.gf42\Station.f'.]]></message>
+      <User scope="Project_220704" name="Project_220704" status="normal" link="531770730" /><![CDATA[Generating network and source code 'D:\SRP_project\Project_0704\Simulation\Project_220704.gf42\Station.f'.]]></message>
     <message status="normal" label="build" groupid="100006">
       <User scope="Project_220704" name="Main" status="normal" link="1361803917" /><![CDATA[Generating network and source code 'D:\SRP_project\Project_0704\Simulation\Project_220704.gf42\Main.f'.]]></message>
     <message status="warning" label="build" groupid="205001">
@@ -10,7 +10,7 @@
       <User scope="Project_220704" name="master:tpflt" status="warning" link="514531106" /><![CDATA[Signal 'Fault_Type' type conversion may lose accuracy at connection 'FT']]></message>
     <message status="normal" label="build" scope="Project_220704" groupid="100006"><![CDATA[Generating 'D:\SRP_project\Project_0704\Simulation\Project_220704.gf42\Project_220704.map'.]]></message>
     <message status="normal" label="build" scope="Project_220704" groupid="100014"><![CDATA[The total number of live nodes: 25]]></message>
-    <message status="normal" label="build" scope="Project_220704" groupid="400000"><![CDATA[Time for Compile: 187ms  Make: 0ms]]></message>
+    <message status="normal" label="build" scope="Project_220704" groupid="400000"><![CDATA[Time for Compile: 78ms  Make: 16ms]]></message>
     <message status="normal" label="build" scope="Project_220704" groupid="100015"><![CDATA[Will execute (1): call E:\Program Files (x86)\GFortran\4.2.1\bin\gf42vars.bat]]></message>
     <message status="normal" label="build" scope="Project_220704" groupid="100015"><![CDATA[Will execute (1): call "E:\Program Files (x86)\GFortran\4.2.1\bin\gf42vars.bat"]]></message>
     <message status="normal" label="build" scope="Project_220704" groupid="100015"><![CDATA[Will execute (2): make -f Project_220704.mak]]></message>
@@ -19,17 +19,17 @@
     <message status="normal" label="build" scope="Project_220704" groupid="0"><![CDATA[D:\SRP_project\Project_0704\Simulation\Project_220704.gf42>call "E:\Program Files (x86)\GFortran\4.2.1\bin\gf42vars.bat" ]]></message>
     <message status="normal" label="build" scope="Project_220704" groupid="100004"><![CDATA[Compiling 'Main.f' into object code.]]></message>
     <message status="normal" label="build" scope="Project_220704" groupid="100012"><![CDATA[Linking objects and libraries into binary 'Project_220704.exe']]></message>
-    <message status="normal" label="build" scope="Project_220704" groupid="400000"><![CDATA[Solve Time = 0ms]]></message>
+    <message status="normal" label="build" scope="Project_220704" groupid="400000"><![CDATA[Solve Time = 109ms]]></message>
   </messagelist>
   <List classid="Settings" />
   <ViewContext>
     <Window defn="Project_220704:Main" call="0" />
   </ViewContext>
   <List classid="View">
-    <View name="Main" zoomlevel="7" scrollx="79" scrolly="32" />
+    <View name="Main" zoomlevel="7" scrollx="42" scrolly="112" />
   </List>
   <Catalog count="0" />
-  <Output device="EMTDC" version="2010" date="2022/07/11" time="10:47:17.000000">
+  <Output device="EMTDC" version="2010" date="2022/07/12" time="20:16:55.000000">
     <Domain name="Time" unit="s" mult="0.0" skew="0.0">
       <Sample rate="2000.0" end="400" />
     </Domain>

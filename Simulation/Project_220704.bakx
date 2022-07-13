@@ -22,7 +22,7 @@
     <param name="Check" value="0" />
     <param name="description" value="" />
     <param name="startup_filename" value="" />
-    <param name="revisor" value="12481, 1657507395" />
+    <param name="revisor" value="12481, 1657629161" />
     <param name="labels" value="" />
   </paramlist>
   <paramlist name="Libs" />
@@ -57,7 +57,7 @@
         </Wire>
       </schematic>
     </Definition>
-    <Definition classid="UserCmpDefn" name="Main" id="1253462778" group="" url="" version="" build="" crc="61875154" view="false" date="1657507039">
+    <Definition classid="UserCmpDefn" name="Main" id="1253462778" group="" url="" version="" build="" crc="127229610" view="false" date="1657628214">
       <paramlist name="">
         <param name="Description" value="" />
       </paramlist>
@@ -628,7 +628,7 @@
             <param name="V1Run8I" value="8" />
             <param name="V1Run9I" value="9" />
             <param name="V1Run10I" value="10" />
-            <param name="N2R" value="5" />
+            <param name="N2R" value="6" />
             <param name="Min2R" value="0.0" />
             <param name="Inc2R" value="1.0" />
             <param name="Max2R" value="1.0" />
@@ -636,8 +636,8 @@
             <param name="V2Run2R" value="10" />
             <param name="V2Run3R" value="50" />
             <param name="V2Run4R" value="100" />
-            <param name="V2Run5R" value="200" />
-            <param name="V2Run6R" value="6" />
+            <param name="V2Run5R" value="500" />
+            <param name="V2Run6R" value="1000" />
             <param name="V2Run7R" value="7" />
             <param name="V2Run8R" value="8" />
             <param name="V2Run9R" value="9" />
@@ -656,14 +656,14 @@
             <param name="V2Run8I" value="8" />
             <param name="V2Run9I" value="9" />
             <param name="V2Run10I" value="10" />
-            <param name="N3R" value="10" />
+            <param name="N3R" value="4" />
             <param name="Min3R" value="0.0" />
             <param name="Inc3R" value="1.0" />
             <param name="Max3R" value="1.0" />
             <param name="V3Run1R" value="1" />
-            <param name="V3Run2R" value="2" />
-            <param name="V3Run3R" value="3" />
-            <param name="V3Run4R" value="4" />
+            <param name="V3Run2R" value="4" />
+            <param name="V3Run3R" value="7" />
+            <param name="V3Run4R" value="8" />
             <param name="V3Run5R" value="5" />
             <param name="V3Run6R" value="6" />
             <param name="V3Run7R" value="7" />
@@ -687,7 +687,7 @@
             <param name="N4R" value="10" />
             <param name="Min4R" value="0.09" />
             <param name="Inc4R" value="0.001" />
-            <param name="Max4R" value="0.1" />
+            <param name="Max4R" value="0.10" />
             <param name="V4Run1R" value="1" />
             <param name="V4Run2R" value="2" />
             <param name="V4Run3R" value="3" />
@@ -1039,7 +1039,7 @@
     </Definition>
   </definitions>
   <hierarchy>
-    <call link="1621358233" name="Project_220704:Station" z="-1" view="false" instance="0">
+    <call link="531770730" name="Project_220704:Station" z="-1" view="false" instance="0">
       <call link="1361803917" name="Project_220704:Main" z="-1" view="true" instance="0" />
     </call>
   </hierarchy>

@@ -27,7 +27,7 @@ class Data:
         self.fault_time = None
 
         # 仿真数据设置
-        self.data_length = 160  # 此值可修改，这里：0.2s正常+0.4s故障+0.2s正常，采样频率2000Hz，观测数据点为160
+        self.data_length = 180  # 此值可修改，这里：0.1s正常+0.4s故障+0.4s正常，采样频率2000Hz，观测数据点为160
         self.data = {}  # 以字典形式存储数据，便于调用
         self.simulation_time = None  # 仿真时间序列
 
@@ -93,7 +93,7 @@ class Data:
         """
         index_reader = Read_from_out.ReadIndex(self.root, self.inf_name).read_index()
         value_reader = np.array(Read_from_out.ReadValue(self.out_path[0]).read_value()[0])
-        begin = self._read_time()[0][0] - 40
+        begin = self._read_time()[0][0] - 20  # 故障点前取半个周波就可以
         if len(self.out_path) != 1:
             for path in self.out_path[1:]:
                 value_reader = np.concatenate((value_reader, Read_from_out.ReadValue(path).read_value()[0]))
@@ -139,10 +139,14 @@ class Data:
 if __name__ == '__main__':
     # 测试及调用示例
     # 循环测试
-    for ii in range(54):
-        test = Data('../Simulation/Project_220704.gf42', ii)
-        test.generate_grayscale(np.concatenate((test.data['Ia_2'], test.data['Ib_2'], test.data['Ic_2'])), 21)
+    # for ii in range(54):
+    #     test = Data('../Simulation/Project_220704.gf42', ii)
+    #     temp = np.concatenate((test.data['Ia_2'], test.data['Ib_2'], test.data['Ic_2']))
+    #     test.generate_grayscale(np.concatenate((test.data['Ia_2'], test.data['Ib_2'], test.data['Ic_2'])), 21)
     # 单次测试
-    # test = Data('../Simulation/Project_220704.gf42', 0)
+    test = Data('../Simulation/Project_220704.gf42', 0)
     # print()
+    temp = np.stack((test.data['Ia_1'], test.data['Ib_1'], test.data['Ic_1'])).flatten('F')
+    # print(temp)
+    test.generate_grayscale(temp, 23)
     print("测试通过")

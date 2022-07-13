@@ -170,7 +170,7 @@
 ! Multiple Run Initialization
 ! ----------------------------------------
       CALL COMPONENT_ID(ICALL_NO,781393092)
-      CALL MRUNVINI(54,1,704)
+      CALL MRUNVINI(792,1,704)
 
 
 ! List Variation of First Multiple Run Parameter:
@@ -185,28 +185,33 @@
 
 
 ! List Variation of Second Multiple Run Parameter:
-! 3 Runs
-      IF ( MRUNNUM(3,3)  .EQ. 1  ) Fault_R = 5.0
-      IF ( MRUNNUM(3,3)  .EQ. 2  ) Fault_R = 10.0
-      IF ( MRUNNUM(3,3)  .EQ. 3  ) Fault_R = 50.0
+! 6 Runs
+      IF ( MRUNNUM(6,3)  .EQ. 1  ) Fault_R = 5.0
+      IF ( MRUNNUM(6,3)  .EQ. 2  ) Fault_R = 10.0
+      IF ( MRUNNUM(6,3)  .EQ. 3  ) Fault_R = 50.0
+      IF ( MRUNNUM(6,3)  .EQ. 4  ) Fault_R = 100.0
+      IF ( MRUNNUM(6,3)  .EQ. 5  ) Fault_R = 500.0
+      IF ( MRUNNUM(6,3)  .EQ. 6  ) Fault_R = 1000.0
 !  Record Values into Output File"
-      CALL MRUNVR(0,1,1,2,4,0,10,3,3,2,0.0,0.0,2.0,Fault_R,"Fault_R")
+      CALL MRUNVR(0,1,1,2,4,0,10,6,3,2,0.0,0.0,2.0,Fault_R,"Fault_R")
 
 
 ! List Variation of Third Multiple Run Parameter:
-! 2 Runs
-      IF ( MRUNNUM(2,9)  .EQ. 1  ) Fault_Type = 1.0
-      IF ( MRUNNUM(2,9)  .EQ. 2  ) Fault_Type = 4.0
+! 4 Runs
+      IF ( MRUNNUM(4,18)  .EQ. 1  ) Fault_Type = 1.0
+      IF ( MRUNNUM(4,18)  .EQ. 2  ) Fault_Type = 4.0
+      IF ( MRUNNUM(4,18)  .EQ. 3  ) Fault_Type = 7.0
+      IF ( MRUNNUM(4,18)  .EQ. 4  ) Fault_Type = 8.0
 !  Record Values into Output File"
-      CALL MRUNVR(0,1,1,3,4,0,10,2,9,2,0.0,0.0,2.0,Fault_Type,"Fault_Typ&
-     &e")
+      CALL MRUNVR(0,1,1,3,4,0,10,4,18,2,0.0,0.0,2.0,Fault_Type,"Fault_Ty&
+     &pe")
 
 
 
 ! Random or Sequential Variation of Fourth Multiple Run Parameter:
-! 3 Runs
-      CALL MRUNVR(0,1,1,4,4,0,10,3,18,0,0.09,0.005,2.0,Fault_Time,"Fault&
-     &_Time")
+! 11 Runs
+      CALL MRUNVR(0,1,1,4,4,0,10,11,72,0,0.09,0.001,2.0,Fault_Time,"Faul&
+     &t_Time")
 
 
 
