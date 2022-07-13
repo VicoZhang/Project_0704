@@ -13,16 +13,19 @@ from torch.utils.data import Dataset, random_split
 from torchvision import transforms
 
 
+from torch.utils.data import DataLoader
+from torch.utils import tensorboard
+
+
 class ReadData(Dataset):
     def __init__(self, root, label):
         self.root = root
         self.label = label
-        self.path = os.path.join(self.root, self.label)
-        self.img_path = os.listdir(self.path)
+        self.img_path = os.listdir(os.path.join(self.root, self.label))
         self.transforms = transforms.ToTensor()
 
     def __getitem__(self, index):
-        img_name = self.path[index]
+        img_name = self.img_path[index]
         img_item_path = os.path.join(self.root, self.label, img_name)
         img = Image.open(img_item_path)
         img = self.transforms(img)
@@ -76,3 +79,13 @@ train_dataset = type_1_dataset_train_set + type_2_dataset_train_set\
 test_dataset = type_1_dataset_test_set + type_2_dataset_test_set\
                 + type_3_dataset_test_set + type_4_dataset_test_set
 
+if __name__ == '__main__':
+    data_loader = DataLoader(train_dataset, batch_size=64, shuffle=True)
+    writer = tensorboard.SummaryWriter(log_dir='dataset_log')
+    step = 0
+    for item in data_loader:
+        step += 1
+        test_img, test_label = item
+        writer.add_images('train_data', test_img, step)
+    writer.close()
+    print("测试通过")
