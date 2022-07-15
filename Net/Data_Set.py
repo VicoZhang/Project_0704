@@ -17,6 +17,19 @@ from torch.utils.data import DataLoader
 from torch.utils import tensorboard
 
 
+def encoding(label_temp):
+    if label_temp == '01':
+        return torch.tensor(0)
+    elif label_temp == '04':
+        return torch.tensor(1)
+    elif label_temp == '07':
+        return torch.tensor(2)
+    elif label_temp == '08':
+        return torch.tensor(3)
+    else:
+        print("label wrong")
+
+
 class ReadData(Dataset):
     def __init__(self, root, label):
         self.root = root
@@ -29,7 +42,8 @@ class ReadData(Dataset):
         img_item_path = os.path.join(self.root, self.label, img_name)
         img = Image.open(img_item_path)
         img = self.transforms(img)
-        label = self.label
+        # label = torch.tensor(eval(self.label[1]))
+        label = encoding(self.label)
         return img, label
 
     def __len__(self):
@@ -81,11 +95,12 @@ test_dataset = type_1_dataset_test_set + type_2_dataset_test_set\
 
 if __name__ == '__main__':
     data_loader = DataLoader(train_dataset, batch_size=64, shuffle=True)
-    writer = tensorboard.SummaryWriter(log_dir='dataset_log')
+    # writer = tensorboard.SummaryWriter(log_dir='dataset_log')
     step = 0
     for item in data_loader:
         step += 1
         test_img, test_label = item
-        writer.add_images('train_data', test_img, step)
-    writer.close()
+        print(test_label)
+        # writer.add_images('train_data', test_img, step)
+    # writer.close()
     print("测试通过")
