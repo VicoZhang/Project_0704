@@ -9,25 +9,11 @@ More information: https://github.com/VicoZhang/Project_0704.git
 import os
 import torch
 from PIL import Image
+from torch.nn.functional import one_hot
 from torch.utils.data import Dataset, random_split
 from torchvision import transforms
-
-
 from torch.utils.data import DataLoader
 from torch.utils import tensorboard
-
-
-def encoding(label_temp):
-    if label_temp == '01':
-        return torch.tensor(0)
-    elif label_temp == '04':
-        return torch.tensor(1)
-    elif label_temp == '07':
-        return torch.tensor(2)
-    elif label_temp == '08':
-        return torch.tensor(3)
-    else:
-        print("label wrong")
 
 
 class ReadData(Dataset):
@@ -42,12 +28,16 @@ class ReadData(Dataset):
         img_item_path = os.path.join(self.root, self.label, img_name)
         img = Image.open(img_item_path)
         img = self.transforms(img)
-        # label = torch.tensor(eval(self.label[1]))
-        label = encoding(self.label)
-        return img, label
+        encode = self._take_encode()
+        return img, encode
 
     def __len__(self):
         return len(self.img_path)
+
+    def _take_encode(self):
+        label_list = list((type_1, type_2, type_3, type_4))
+        coding_list = one_hot(torch.arange(len(label_list)))
+        return coding_list[label_list.index(self.label)]
 
 
 data_dir = '../Gray_scale/Gray_image'
