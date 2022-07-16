@@ -5,7 +5,6 @@ author: Vico Zhang
 More information: https://github.com/VicoZhang/Project_0704.git
 """
 
-
 import os
 import torch
 from PIL import Image
@@ -17,19 +16,20 @@ from torch.utils import tensorboard
 
 
 class ReadData(Dataset):
-    def __init__(self, root, label):
+    def __init__(self, root, type):
         self.root = root
-        self.label = label
-        self.img_path = os.listdir(os.path.join(self.root, self.label))
+        self.type = type
+        self.encode = self._take_encode()
+        self.label = self._decode()
+        self.img_path = os.listdir(os.path.join(self.root, self.type))
         self.transforms = transforms.ToTensor()
 
     def __getitem__(self, index):
         img_name = self.img_path[index]
-        img_item_path = os.path.join(self.root, self.label, img_name)
+        img_item_path = os.path.join(self.root, self.type, img_name)
         img = Image.open(img_item_path)
         img = self.transforms(img)
-        encode = self._take_encode()
-        return img, encode
+        return img, self.label
 
     def __len__(self):
         return len(self.img_path)
@@ -37,7 +37,10 @@ class ReadData(Dataset):
     def _take_encode(self):
         label_list = list((type_1, type_2, type_3, type_4))
         coding_list = one_hot(torch.arange(len(label_list)))
-        return coding_list[label_list.index(self.label)]
+        return coding_list[label_list.index(self.type)]
+
+    def _decode(self):
+        return self.encode.max(dim=0)[1]
 
 
 data_dir = '../Gray_scale/Gray_image'
@@ -50,7 +53,6 @@ type_1_dataset = ReadData(data_dir, type_1)
 type_2_dataset = ReadData(data_dir, type_2)
 type_3_dataset = ReadData(data_dir, type_3)
 type_4_dataset = ReadData(data_dir, type_4)
-
 
 # 训练集与验证集的长度
 train_len = 150
@@ -77,11 +79,10 @@ type_4_dataset_train_set, type_4_dataset_test_set = random_split(
     generator=torch.Generator().manual_seed(704)
 )
 
-
-train_dataset = type_1_dataset_train_set + type_2_dataset_train_set\
+train_dataset = type_1_dataset_train_set + type_2_dataset_train_set \
                 + type_3_dataset_train_set + type_4_dataset_train_set
-test_dataset = type_1_dataset_test_set + type_2_dataset_test_set\
-                + type_3_dataset_test_set + type_4_dataset_test_set
+test_dataset = type_1_dataset_test_set + type_2_dataset_test_set \
+               + type_3_dataset_test_set + type_4_dataset_test_set
 
 if __name__ == '__main__':
     data_loader = DataLoader(train_dataset, batch_size=64, shuffle=True)
@@ -91,6 +92,6 @@ if __name__ == '__main__':
         step += 1
         test_img, test_label = item
         print(test_label)
-        # writer.add_images('train_data', test_img, step)
+    #     writer.add_images('train_data', test_img, step)
     # writer.close()
     print("测试通过")
