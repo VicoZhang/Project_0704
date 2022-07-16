@@ -23,10 +23,8 @@ time = "{0:%Y_%m_%dT%H_%M_%S}".format(datetime.now())
 tensorboard_path = 'logs_1wave/{}/'.format(time)
 net_save_path = '../Result_1wave/Net_result_{}.pth'.format(time)
 
-net = Net.Net()
-net = net.cuda()
-loss_fn = nn.CrossEntropyLoss()
-loss_fn = loss_fn.cuda()
+net = Net.Net().cuda()
+loss_fn = nn.CrossEntropyLoss().cuda()
 optimizer = optim.SGD(net.parameters(), learn_rate)
 writer = tensorboard.SummaryWriter(log_dir=tensorboard_path)
 
@@ -58,15 +56,16 @@ for epoch in range(epochs):
 
         writer.add_scalar('test_loss', test_loss, test_step)
         print("第{}次测试完成, 测试集损失函数值{}".format(test_step, test_loss))
+        print("==========================================================")
 
 writer.close()
 torch.save(net.state_dict(), f=net_save_path)
 print("模型已保存")
 with open(os.path.join(tensorboard_path, 'information'), 'w') as f:
-    f.write('epochs = {}}\n'
-            'learn_rate = {}}\n'
-            'loss_fn = {}}\n'
-            'optimizer = {}}\n'
+    f.write('epochs = {}\n'
+            'learn_rate = {}\n'
+            'loss_fn = {}\n'
+            'optimizer = {}\n'
             'len(Data_Set.train_dataset)={}\n'
             'len(Data_Set.test_dataset)={}\n'.format(epochs,
                                                      learn_rate,
