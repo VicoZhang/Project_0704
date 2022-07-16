@@ -28,7 +28,7 @@ class ReadValue:
         self.TIME_NUM = len(self.temp)
         self.ITEM_NUM = len(re.split(r"[ ]+", self.temp[1].replace("\n", " "))[1:-1])
 
-    def read_value(self):
+    def read_value(self) -> tuple:
         value_temp = np.zeros((self.TIME_NUM, self.ITEM_NUM))
         for i in range(self.TIME_NUM):
             value_temp[i] = np.array(re.split(r"[ ]+", self.temp[i].replace("\n", " "))[1:-1]).astype(np.float64)
@@ -54,7 +54,7 @@ class ReadIndex:
             self.temp = f.readlines()
         self.INDEX_NUM = len(self.temp)
 
-    def read_index(self):
+    def read_index(self) -> dict:
         index_temp = ['0'] * self.INDEX_NUM
         reformat = re.compile(r"PGB\((?P<PGB>.*?)\)(.*?)Desc=\"(?P<Desc>.*?)\"", re.S)
         for line in self.temp:
@@ -99,7 +99,7 @@ class ReadInformation:
                 information_temp[i - 2] = re.split(r"[ ]+", self.inf_temp[i].replace("\n", " "))[1:-1]
         return information_temp[:self.DELETE - 2]
 
-    def read_name(self):
+    def read_name(self) -> dict:
         name_temp = np.array(re.split(r"[ ]+", self.inf_temp[1].replace("\n", " "))[2:-1])
         index_temp = np.arange(self.NUM)
         return dict(zip(name_temp, index_temp))
