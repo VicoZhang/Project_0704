@@ -35,7 +35,7 @@ class ReadData(Dataset):
         return len(self.img_path)
 
     def _take_encode(self):
-        label_list = list((type_1, type_2, type_3, type_4))
+        label_list = os.listdir(self.root)
         coding_list = one_hot(torch.arange(len(label_list)))
         return coding_list[label_list.index(self.type)]
 
