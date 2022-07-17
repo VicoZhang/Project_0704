@@ -1,3 +1,10 @@
+"""
+encoding = 'utf-8'
+author: Vico Zhang
+此文件进行训练设置，保存训练结果
+More information: https://github.com/VicoZhang/Project_0704.git
+"""
+
 import Net
 import Data_Set
 from torch.utils.data import DataLoader
