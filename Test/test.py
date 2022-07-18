@@ -1,3 +1,10 @@
+"""
+encoding = 'utf-8'
+author: Vico Zhang
+加载训练好的网络，进行验证。
+More information: https://github.com/VicoZhang/Project_0704.git
+"""
+
 import torch
 from torch.utils.data import DataLoader
 import Net.Net

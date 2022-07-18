@@ -1,3 +1,10 @@
+"""
+encoding = 'utf-8'
+author: Vico Zhang
+此文件生成神经网络，为 LeNet-5 的改动版本。
+More information: https://github.com/VicoZhang/Project_0704.git
+"""
+
 import torch
 from torch import nn
 
