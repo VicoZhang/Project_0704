@@ -25,7 +25,6 @@ epochs = 50
 learn_rate = 0.01
 train_step = 0
 test_step = 0
-test_loss = 0
 time = "{0:%Y_%m_%dT%H_%M_%S}".format(datetime.now())
 tensorboard_path = 'logs_1wave/{}/'.format(time)
 net_save_path = '../Result_1wave/Net_result_{}.pth'.format(time)
@@ -52,6 +51,7 @@ for epoch in range(epochs):
         print("第{}次训练完成, 损失函数值为{}".format(train_step, loss.item()))
 
     with torch.no_grad():
+        test_loss = 0
         for test_data in test_data_loader:
             test_img, test_label = test_data
             test_img = test_img.cuda()
